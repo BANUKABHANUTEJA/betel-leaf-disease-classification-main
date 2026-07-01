@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Betel Leaf Disease Classifier</title>
+    <!-- Google Fonts for Modern Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <!-- Background Decorators -->
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+    <div class="bg-blob blob-3"></div>
+
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <h1>Disease Identification in Betel Leaf </h1>
+            <p>Advanced diagnostic tool for Betel leaf diseases and instant treatment analysis.</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Upload Section -->
+            <div class="card glass-panel upload-section" id="upload-card">
+                <div class="upload-area" id="drop-zone">
+                    <svg class="upload-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 4V16M12 4L8 8M12 4L16 8M4 16V17C4 18.6569 5.34315 20 7 20H17C18.6569 20 20 18.6569 20 17V16"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <h3>Upload Leaf Image</h3>
+                    <p>Drag and drop or click to browse (JPG, PNG)</p>
+                    <input type="file" id="file-input" accept="image/png, image/jpeg, image/jpg" hidden>
+                </div>
+
+                <!-- Preview Area (Hidden Initially) -->
+                <div class="preview-area hidden" id="preview-area">
+                    <div class="img-wrapper">
+                        <img id="image-preview" src="" alt="Selected Betel Leaf">
+                    </div>
+                    <div class="actions">
+                        <button id="btn-reselect" class="btn btn-secondary">Select Another</button>
+                        <button id="btn-analyze" class="btn btn-primary">Analyze Health</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Spinner (Hidden Initially) -->
+            <div class="loader-container hidden" id="loader">
+                <div class="spinner"></div>
+                <p>Analyzing leaf structures via ResNet50...</p>
+            </div>
+
+            <!-- Results Section (Hidden Initially) -->
+            <div class="card glass-panel results-section hidden" id="results-card">
+                <div class="result-header">
+                    <h2>Diagnosis Complete</h2>
+                    <span class="confidence-badge" id="confidence-badge">99.8%</span>
+                </div>
+
+                <div class="prediction-box">
+                    <h1 id="disease-name" class="gradient-text">Healthy Leaf</h1>
+                </div>
+
+                <div class="results-visuals">
+                    <div class="analyzed-img-container">
+                        <h3>Analyzed Leaf</h3>
+                        <div class="img-wrapper">
+                            <img id="results-image" src="" alt="Analyzed Betel Leaf">
+                        </div>
+                    </div>
+
+                    <div class="graph-container">
+                        <h3>Probability Distribution</h3>
+                        <div id="probability-graph" class="prob-chart">
+                            <!-- Bars will be injected via JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="details-grid">
+                    <div class="detail-card info-card">
+                        <h3><span class="icon">ℹ️</span> Description</h3>
+                        <p id="disease-desc">Description goes here.</p>
+                    </div>
+                    <div class="detail-card treatment-card">
+                        <h3><span class="icon">💊</span> Treatment Plan</h3>
+                        <p id="disease-treatment">Treatment instructions go here.</p>
+                    </div>
+                </div>
+
+                <div class="actions full-width">
+                    <button id="btn-new-scan" class="btn btn-primary">Start New Scan</button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Powered by TensorFlow & Flask</p>
+        </footer>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>
